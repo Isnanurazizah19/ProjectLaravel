@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controller\UserController;
+use App\Http\Controller\ProductController;
+Use App\Models\Product;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,29 +16,39 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->prefix('users')->group(function () {
-    // Read - Menampilkan semua user
-    Route::get('/', [UserController::class, 'index']);
+Route::get('/user', function () {
+    return view('user');
+});
+Route::get('/produk', function () {
+    return view('produk');
+});
 
-    // Read - Menampilkan form untuk membuat user baru
-    Route::get('/create', [UserController::class, 'create']);
 
-    // Create - Menyimpan user baru ke database
-    Route::post('/', [UserController::class, 'store']);
+Route::get('/about', function () {
+    return 'Halaman About';
+});
 
-    // Read - Menampilkan informasi detail user
-    Route::get('/{user}', [UserController::class, 'show']);
+Route::get('/about                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ', function () {
+    $data = [
+        'pageTitle' => 'Tentang Kami',
+        'content' => 'Ini adalah halaman tentang kami.'
+    ];
+    return view('about', $data);
+});
 
-    // Update - Menampilkan form untuk mengedit user
-    Route::get('/{user}/edit', [UserController::class, 'edit']);
+Route::get('/products', 'ProductController@index');
 
-    // Update - Menyimpan perubahan pada user ke database
-    Route::put('/{user}', [UserController::class, 'update']);
+Route::get('/products', function () {
+    $products = App\Models\Product::all();
+    return view('products.index', ['products' => $products]);
+});
 
-    // Delete - Menghapus user dari database
-    Route::delete('/{user}', [UserController::class, 'destroy']);
+Route::get('profile',function(){
+    $nama = "Isna Nurazizah";
+    return view('profile.index', compact('nama'));
 });
