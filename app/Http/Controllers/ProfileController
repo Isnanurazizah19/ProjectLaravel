@@ -11,6 +11,7 @@ class ProfilController extends Controller
         $nama = "Isna Nur azizah";
         $alamat = "Kota Bandung";
         $tanggal_lahir = "21 Juli 2002";
+        
         $data_array = array(
             "nama" => array(
                 "Isna Nur azizah", "risna", "herlina",
