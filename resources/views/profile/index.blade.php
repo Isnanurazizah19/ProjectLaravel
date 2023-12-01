@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Profil</title>
 </head>
 <body>
 
     <h1>Profil</h1>
     <hr>
-
     <table border='0'>
+        @if($nama == 'Isna ')
             <tr>
                 <td>Nama Saya :</td>
-                <td>{{ $nama }}</td>
-            </tr>
-    </table>
-
-    <h1>Contoh Pengulangan</h1>
-    <table>
-        @if(isset($data_array['alamat']) && is_array($data_array['alamat']))
-            @foreach($data_array['alamat'] as $data)
-                <tr>
-                    <td>Alamat</td>
-                    <td>{{ $data }}</td>
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <td colspan="2"></td>
+                <td>{{ $nama }} </td>
             </tr>
         @endif
     </table>
 
-</body>
-</html>
+    <hr>
+    <h1>Contoh Penerapan
+        <br> Isna 
+     </head>
+
+     <h1>Contoh forelse </h1>
+<table>
+    @forelse( ['Isna'] as $data)
+    <tr>
+        <td> {{ $data }} </td>
+    </tr>
+    @empty
+    data tidak ditemukan
+    @endforelse
+</table>
+
+<h1>Contoh for<h1>
+<table>
+    @for($i=0;$i<5;$i++)
+        {{$i}}<br>
+    @endfor
+</table>
+
+<hr><head>
+<h1> contoh pengulangan</h1>
+<table></head>
+    @foreach( ['Isna'] as $data)
+    <tr>
+        <td>{{ $data }}</td>
+    </tr>
+    @endforeach
+</table>
